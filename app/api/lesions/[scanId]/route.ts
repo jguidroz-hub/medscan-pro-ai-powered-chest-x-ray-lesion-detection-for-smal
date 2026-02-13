@@ -14,9 +14,9 @@ export async function GET(request: Request) {
   const ip = request.headers.get('x-forwarded-for') || 'unknown';
   // Rate limit: 100 per 1min
 
-  const items = await db.select().from(LesionsDetail)
-    .where(eq(LesionsDetail.userId, session.user.id))
-    .orderBy(desc(LesionsDetail.createdAt))
+  const items = await db.select().from(lesionsDetail)
+    .where(eq(lesionsDetail.userId, session.user.id))
+    .orderBy(desc(lesionsDetail.createdAt))
     .limit(100);
 
   return NextResponse.json({ items, count: items.length });
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
   const body = await request.json();
   const id = randomUUID();
 
-  const [item] = await db.insert(LesionsDetail).values({
+  const [item] = await db.insert(lesionsDetail).values({
     id,
     userId: session.user.id,
     ...body,
