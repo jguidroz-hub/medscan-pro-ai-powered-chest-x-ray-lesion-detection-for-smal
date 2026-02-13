@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-interface Scan/[id]Item {
+interface ScanDetailItem
   id: string;
   title?: string;
   status?: string;
@@ -10,8 +10,8 @@ interface Scan/[id]Item {
   [key: string]: any;
 }
 
-export default function Scan/[id]Page() {
-  const [items, setItems] = useState<Scan/[id]Item[]>([]);
+export default function ScanDetailPage
+  const [items, setItems] = useState<ScanDetailItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -39,7 +39,7 @@ export default function Scan/[id]Page() {
   };
 
   const handleDelete = async (id: string) => {
-    await fetch(`/api/scan/[id]/${id}`, { method: 'DELETE' });
+    await fetch(`/ApiScanDetail/${id}`, { method: 'DELETE' });
     setItems(prev => prev.filter(i => i.id !== id));
   };
 
