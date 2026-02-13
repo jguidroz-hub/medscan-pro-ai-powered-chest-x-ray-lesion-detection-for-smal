@@ -5,6 +5,7 @@ import { users } from './schema';
 // Per-user preferences and settings
 export const userSettings = pgTable('user_settings', {
   id: text('id').primaryKey(),
+  userId: text('user_id').notNull(),
   userId: text('user_id').notNull().unique().references(() => users.id, { onDelete: 'cascade' }),
   timezone: text('timezone').default('UTC'),
   emailNotifications: boolean('email_notifications').default(true),
@@ -16,6 +17,7 @@ export const userSettings = pgTable('user_settings', {
 // Tracks important state changes for debugging and compliance
 export const auditLog = pgTable('audit_log', {
   id: text('id').primaryKey(),
+  userId: text('user_id').notNull(),
   userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
   action: text('action').notNull(),
   entityType: text('entity_type').notNull(),
@@ -28,6 +30,7 @@ export const auditLog = pgTable('audit_log', {
 // Chest X-ray scans uploaded for AI analysis
 export const scans = pgTable('scans', {
   id: text('id').primaryKey(),
+  userId: text('user_id').notNull(),
   userId: text('user_id').references(() => users.id, { onDelete: 'cascade' }),
   fileUrl: text('file_url').notNull(),
   patientName: text('patient_name').notNull(),
@@ -41,6 +44,7 @@ export const scans = pgTable('scans', {
 // Detected lesions from AI scan analysis
 export const lesions = pgTable('lesions', {
   id: text('id').primaryKey(),
+  userId: text('user_id').notNull(),
   scanId: text('scan_id').references(() => scans.id, { onDelete: 'cascade' }),
   type: text('type').notNull(),
   confidenceScore: text('confidence_score').notNull(),
