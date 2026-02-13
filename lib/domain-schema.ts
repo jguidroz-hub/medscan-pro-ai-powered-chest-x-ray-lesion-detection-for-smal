@@ -6,7 +6,6 @@ import { users } from './schema';
 export const userSettings = pgTable('user_settings', {
   id: text('id').primaryKey(),
   userId: text('user_id').notNull(),
-  userId: text('user_id').notNull().unique().references(() => users.id, { onDelete: 'cascade' }),
   timezone: text('timezone').default('UTC'),
   emailNotifications: boolean('email_notifications').default(true),
   weeklyDigest: boolean('weekly_digest').default(true),
@@ -18,7 +17,6 @@ export const userSettings = pgTable('user_settings', {
 export const auditLog = pgTable('audit_log', {
   id: text('id').primaryKey(),
   userId: text('user_id').notNull(),
-  userId: text('user_id').references(() => users.id, { onDelete: 'set null' }),
   action: text('action').notNull(),
   entityType: text('entity_type').notNull(),
   entityId: text('entity_id'),
@@ -31,7 +29,6 @@ export const auditLog = pgTable('audit_log', {
 export const scans = pgTable('scans', {
   id: text('id').primaryKey(),
   userId: text('user_id').notNull(),
-  userId: text('user_id').references(() => users.id, { onDelete: 'cascade' }),
   fileUrl: text('file_url').notNull(),
   patientName: text('patient_name').notNull(),
   patientAge: integer('patient_age').notNull(),
