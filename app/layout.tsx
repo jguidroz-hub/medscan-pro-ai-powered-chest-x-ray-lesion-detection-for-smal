@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'MedScan Pro - AI-powered chest X-ray lesion detection for small clinics',
-  description: 'Value Proposition: Automated chest X-ray analysis that helps small clinics and radiologists detect lesions with hospital-grade accuracy, reducing misdiagnosis and improving patient outcomes without expensive equipment upgrades.',
+  description: 'Value Proposition: Automated chest X-ray analysis that helps small clinics and radiologists detect l',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
