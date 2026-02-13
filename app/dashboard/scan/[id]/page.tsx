@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-interface ScanDetailItem
+interface ScanDetailItem {
   id: string;
   title?: string;
   status?: string;
@@ -10,7 +10,7 @@ interface ScanDetailItem
   [key: string]: any;
 }
 
-export default function ScanDetailPage
+export default function ScanDetailPage() {
   const [items, setItems] = useState<ScanDetailItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
